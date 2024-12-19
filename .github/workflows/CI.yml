@@ -1,0 +1,25 @@
+---
+name: Role Continuous-Integration
+run-name: CI ${{ github.repository }} - ${{ github.ref }} job 🚀
+on:
+  push:
+    branches: [master]
+  pull_request:
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v3
+
+      - name: YAML lint configs
+        run: |
+          python -m pip install --upgrade pip
+          pip install yamllint==1.35.1
+          yamllint --config-file ./test/yaml-lint.yml .
+
+      - name: Ansible lint configs
+        run: |
+          python -m pip install --upgrade pip
+          pip install ansible-lint==24.6.0
+          ansible-lint --config-file ./test/ansible-lint.yml .

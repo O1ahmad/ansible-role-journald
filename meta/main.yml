@@ -2,6 +2,7 @@
 galaxy_info:
   author: Ahmad Wilson
   role_name: journald
+  namespace: o1ahmad
   description: Journald, a system service that collects and stores logging data
   company: "O1.IO"
   license: license (MIT)
